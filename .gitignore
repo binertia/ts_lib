@@ -1,0 +1,9 @@
+packet-lock.json
+/dist/
+node_modules/
+.env
+.DS_Store
+
+*.swp
+bak.*
+.vscode/
