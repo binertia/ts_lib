@@ -20,15 +20,15 @@ export function _eval(expr : string) : number {
 	const validExpression = /^[0-9+\-*/().^a-z\s]*$/;
 
 	if (!validExpression.test(expr)) {
-		throw new Error('invalid char in expression'); // secure input
+		throw new Error('Invalid char in expression'); // secure input
 	}
 	if (expr.length > 90) {
-		throw new Error('expression is too long'); // protect injection attack
+		throw new Error('Expression is too long'); // protect injection attack
 	}
 	try {
 		const res = evaluate(expr, exprScope);
 		if (typeof res != "number" || isNaN(res)) {
-			throw new Error("invalid mathematic expression");
+			throw new Error("Invalid mathematic expression");
 		}
 		if (expr.includes('/') && (res === Infinity || res === -Infinity)) {
 			throw new Error('Division by zero');

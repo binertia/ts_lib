@@ -31,7 +31,7 @@ describe('_eval', () => {
   });
 
   it('invalid characters', () => {
-    expect(() => _eval('2 + 3asdfji')).toThrow(`Error evaluate expression : ...`);
+    expect(() => _eval('2 + 3asdfji')).toThrow(`Undefined symbol asdfji`);
   });
 
   it('division by zero', () => {
@@ -40,10 +40,10 @@ describe('_eval', () => {
 
   it('more than 90 len', () => {
     const longExpression = '2 + 3 '.repeat(30);
-    expect(() => _eval(longExpression)).toThrow('expression is too long');
+    expect(() => _eval(longExpression)).toThrow('Expression is too long');
   });
 
   it('should return NaN', () => {
-    expect(() => _eval('sqrt(-1)')).toThrow('invalid mathematic expression');
+    expect(() => _eval('sqrt(-1)')).toThrow('Invalid mathematic expression');
   });
 });
