@@ -37,6 +37,6 @@ export function _parseFloat(value : string) : number {
 	return (res);
 }
 
-function _isDigit(char: string) : boolean {
+export function _isDigit(char: string) : boolean {
 	return (char >= '0' && char <= '9')
 }
