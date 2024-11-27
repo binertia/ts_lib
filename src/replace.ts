@@ -1,8 +1,10 @@
-// WIP :regex & reciept function support as original
+// WIP :regex as original
 // mimick search argument as empty string?
 
-export function _replace(source: string, search: string, replace: string): string {
+export function _replace(source: string, search: string, replace: string | ((match: string) => string)): string {
 	if (!search) {
+		if (typeof replace !== "string")
+			return (replace(search) + source);
 		return (replace + source);
 	}
 
@@ -22,9 +24,16 @@ export function _replace(source: string, search: string, replace: string): strin
 		}
 
 		if (found) {
-			for (let j = 0; j < replace.length; j++)
-				res += replace[j];
-			i += search.length;
+			if (typeof replace === "string") {
+				for (let j = 0; j < replace.length; j++)
+					res += replace[j];
+				i += search.length;
+			} else {
+				const callbackRes = replace(search);
+				for (let j = 0; j < callbackRes.length; j++)
+					res += callbackRes[j];
+				i += callbackRes.length;
+			}
 		} else {
 			res += source[i];
 			i++;

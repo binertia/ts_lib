@@ -16,7 +16,14 @@ describe('_replace Fn test', () => {
 		expect(_replace("hello world", "world", "")).toBe("hello ");
 	});
 
-	it('should handle empty search argument as empty string as real replace', () => {
+	it('should handle empty source & search argument as empty string as real replace', () => {
 		expect(_replace("hello world", "", "replace")).toBe("replacehello world");
+		expect(_replace("", "world", "be")).toBe("");
+	})
+
+	it('should handle send argument to replace as callback function', () => {
+		expect(_replace("hello world", "world", (a) => a.toUpperCase())).toBe("hello WORLD");
+		expect(_replace("hello woRlD", "woRlD", (a) => a.toLowerCase())).toBe("hello world");
+		expect(_replace("hello world", "world", (a) => a + "333")).toBe("hello world333");
 	})
 });
