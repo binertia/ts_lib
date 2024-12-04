@@ -6,3 +6,5 @@ console.log("hello world".replace("", "love"))
 console.log("hi hi ".replace("hi", "hello"));
 // console.log("hi hi".replace("hi",(a) => a + "!!!"));
 console.log("".replace("hi",(a) => a + "!!!"));
+const array = [1, , 3];
+console.log(array.map((i, j, k) => i + 1))
